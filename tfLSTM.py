@@ -34,8 +34,16 @@ uni_data = df['T (degC)']
 uni_data.index = df['Date Time']
 uni_data.plot().get_figure().savefig('univariate_temperature_data.png')
 uni_data = uni_data.values # Clean the data to leave only the temp data
+
 # Gotta normalize the data 4 training~~
-uni_train_meain
+uni_train_mean = uni_data[:TRAIN_SPLIT].mean()
+uni_train_std = uni_data[:TRAIN_SPLIT].std()
+uni_data = (uni_data-uni_train_mean)/uni_train_std
+
+# Create multiple datasets to train the model
+univariate_past_history = 20
+univariate_future_target = 0
+# Above variables are used to determine the history and prediction tgt size 
 
 # FUNCTIONS YAY
 
